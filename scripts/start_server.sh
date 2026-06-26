@@ -9,6 +9,8 @@ IMAGE_NAME="churning-api"
 CONTAINER_NAME="churning-api-container"
 
 # ============================================================
+# Go to the project directory
+cd /home/ec2-user/churning-api
 
 echo "Building Docker Image..."
 
