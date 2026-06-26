@@ -1,15 +1,25 @@
 #!/bin/bash
 
 # ============================================================
-# CHANGE ONLY THE CONTAINER NAME FOR A NEW PROJECT
+# CHANGE THESE TWO VALUES FOR EVERY NEW PROJECT
 # ============================================================
+
+IMAGE_NAME="churning-api"
 
 CONTAINER_NAME="churning-api-container"
 
-echo "Stopping old container..."
+# ============================================================
 
-docker stop $CONTAINER_NAME || true
+echo "Building Docker Image..."
 
-echo "Removing old container..."
+docker build -t $IMAGE_NAME .
 
-docker rm $CONTAINER_NAME || true
+echo "Starting Docker Container..."
+
+docker run -d \
+--name $CONTAINER_NAME \
+-p 8000:8000 \
+--restart always \
+$IMAGE_NAME
+
+echo "Deployment Successful."
